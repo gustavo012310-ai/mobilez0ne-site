@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MobileZone - Os Melhores Jogos de Celular</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-neon: #00D4FF;
+            --roxo: #9B59B6;
+            --preto: #0A0A0A;
+            --cinza-escuro: #1A1A1A;
+            --cinza-medio: #2A2A2A;
+            --branco: #FFFFFF;
+            --gradiente-principal: linear-gradient(135deg, var(--azul-neon), var(--roxo));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--preto);
+            color: var(--branco);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(10, 10, 10, 0.95) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--azul-neon);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: var(--gradiente-principal);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: var(--branco) !important;
+            font-weight: 600;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--azul-neon) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--azul-neon);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(155, 89, 182, 0.1)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2300D4FF" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,133.3C960,128,1056,96,1152,90.7C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: var(--gradiente-principal);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5)); }
+            to { filter: drop-shadow(0 0 30px rgba(155, 89, 182, 0.8)); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #B0B0B0;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradiente-principal);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            color: var(--branco);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.5);
+            color: var(--branco);
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Cards Section */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--branco);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradiente-principal);
+        }
+
+        .feature-card {
+            background: var(--cinza-escuro);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--azul-neon);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--azul-neon);
+            margin-bottom: 20px;
+        }
+
+        /* Benefits Section */
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--cinza-escuro);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(10px);
+            background: var(--cinza-medio);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--roxo);
+            margin-right: 20px;
+            min-width: 50px;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: var(--cinza-escuro);
+            border-left: 4px solid var(--azul-neon);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #E0E0E0;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--azul-neon);
+        }
+
+        /* Plans Section */
+        .plan-card {
+            background: var(--cinza-escuro);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100%;
+        }
+
+        .plan-card.featured {
+            border-color: var(--azul-neon);
+            transform: scale(1.05);
+        }
+
+        .plan-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradiente-principal);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--roxo);
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.3);
+        }
+
+        .plan-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--branco);
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--azul-neon);
+            margin-bottom: 20px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: #B0B0B0;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #E0E0E0;
+        }
+
+        .plan-features li i {
+            color: var(--roxo);
+            margin-right: 10px;
+        }
+
+        /* FAQ */
+        .accordion-item {
+            background: var(--cinza-escuro);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-button {
+            background: var(--cinza-escuro);
+            color: var(--branco);
+            font-weight: 600;
+            border: none;
+            padding: 20px;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--cinza-medio);
+            color: var(--azul-neon);
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border: none;
+        }
+
+        .accordion-button::after {
+            filter: invert(1);
+        }
+
+        .accordion-body {
+            background: var(--cinza-medio);
+            color: #E0E0E0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--cinza-escuro);
+            border-top: 2px solid var(--azul-neon);
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-links a {
+            color: var(--branco);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--azul-neon);
+        }
+
+        .social-icons a {
+            color: var(--branco);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--azul-neon);
+            transform: translateY(-3px);
+        }
+
+        /* About Page */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradiente-principal);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-content {
+            background: var(--cinza-escuro);
+            padding: 20px;
+            border-radius: 10px;
+            width: 45%;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--azul-neon);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--cinza-escuro);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .form-control, .form-select {
+            background: var(--cinza-medio);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: var(--branco);
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: var(--cinza-medio);
+            border-color: var(--azul-neon);
+            color: var(--branco);
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+
+        .form-label {
+            color: var(--azul-neon);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .plan-card.featured {
+                transform: scale(1);
+            }
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradiente-principal);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--branco);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--azul-neon);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: particleFloat 10s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-gamepad"></i> MobileZone
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="page-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-6 hero-content fade-in">
+                        <h1 class="hero-title">Os Melhores Jogos de Celular em Um Único Lugar</h1>
+                        <p class="hero-subtitle">Reviews, novidades, recomendações e tudo sobre o mundo mobile.</p>
+                        <a href="#o-que-oferecemos" class="btn-primary-custom">
+                            <i class="fas fa-rocket"></i> Explorar Agora
+                        </a>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <img src="<img src="https://uploads.folhavitoria.com.br/2024/11/2w6Qc88x-61ff7a20-7214-11ef-9975-518e928b09ff-minified.webp" alt="Jogos mobile" style="width:100%; border-radius: 10px;">
+" alt="Gamer" class="hero-image img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- O que oferecemos -->
+        <section id="o-que-oferecemos" class="section-padding">
+            <div class="container">
+                <h2 class="section-title fade-in">O que oferecemos</h2>
+                <div class="row g-4">
+                    <div class="col-md-4 fade-in">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3>Reviews detalhadas</h3>
+                            <p>Análise completa de jogabilidade, gráficos e desempenho para você tomar a melhor decisão.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 fade-in">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3>Top listas semanais</h3>
+                            <p>Os melhores jogos por categoria, atualizados toda semana com as novidades do mercado.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 fade-in">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-sparkles"></i>
+                            </div>
+                            <h3>Novidades e lançamentos</h3>
+                            <p>Atualizações de jogos populares e novidades exclusivas do mundo mobile gaming.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefícios -->
+        <section class="section-padding" style="background: var(--cinza-escuro);">
+            <div class="container">
+                <h2 class="section-title fade-in">Por que escolher a MobileZone?</h2>
+                <div class="row">
+                    <div class="col-lg-6 fade-in">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Conteúdo atualizado diariamente</h4>
+                                <p>Novas reviews e listas todos os dias para você nunca ficar de fora.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h4>Conteúdo para todos os níveis</h4>
+                                <p>Desde iniciantes até gamers avançados, temos conteúdo para você.</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4>Curadoria por especialistas</h4>
+                                <p>Nossa equipe de especialistas seleciona apenas os melhores jogos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center fade-in">
+                        <img src="https://picsum.photos/seed/mobilegames/400/300" alt="Mobile Games" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Depoimentos -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title fade-in">O que nossos gamers dizem</h2>
+                <div class="row">
+                    <div class="col-lg-4 fade-in">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Encontrei jogos incríveis que nunca tinha visto! O site mudou minha forma de jogar."</p>
+                            <p class="testimonial-author">— Lucas F.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 fade-in">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"As análises são muito completas e ajudam demais na hora de escolher um novo jogo!"</p>
+                            <p class="testimonial-author">— Rafaela M.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 fade-in">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Melhor site para quem ama jogos mobile. Recomendo para todos os meus amigos!"</p>
+                            <p class="testimonial-author">— Pedro H.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planos -->
+        <section class="section-padding" style="background: var(--cinza-escuro);">
+            <div class="container">
+                <h2 class="section-title fade-in">Escolha seu plano</h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 fade-in">
+                        <div class="plan-card">
+                            <h3 class="plan-name">Básico</h3>
+                            <div class="plan-price">Grátis</div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Acesso às listas de jogos</li>
+                                <li><i class="fas fa-check"></i> Reviews básicas</li>
+                                <li><i class="fas fa-check"></i> Novidades semanais</li>
+                            </ul>
+                            <button class="btn btn-outline-light w-100" onclick="goToContact('Básico')">Assinar Agora</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 fade-in">
+                        <div class="plan-card featured">
+                            <h3 class="plan-name">Gamer Plus</h3>
+                            <div class="plan-price">R$19,90<span>/mês</span></div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Tudo do plano Básico</li>
+                                <li><i class="fas fa-check"></i> Reviews completas</li>
+                                <li><i class="fas fa-check"></i> Recomendações personalizadas</li>
+                                <li><i class="fas fa-check"></i> Acesso antecipado</li>
+                            </ul>
+                            <button class="btn-primary-custom w-100" onclick="goToContact('Gamer Plus')">Assinar Agora</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 fade-in">
+                        <div class="plan-card">
+                            <h3 class="plan-name">Ultimate Mobile</h3>
+                            <div class="plan-price">R$39,90<span>/mês</span></div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> Tudo do plano Plus</li>
+                                <li><i class="fas fa-check"></i> Guias exclusivos</li>
+                                <li><i class="fas fa-check"></i> Testes antecipados</li>
+                                <li><i class="fas fa-check"></i> Comunidade VIP</li>
+                                <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                            </ul>
+                            <button class="btn btn-outline-light w-100" onclick="goToContact('Ultimate Mobile')">Assinar Agora</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="section-title fade-in">Dúvidas Frequentes</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 fade-in">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        Como os jogos são avaliados?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Nossos especialistas avaliam os jogos baseados em critérios como jogabilidade, gráficos, desempenho, inovação e experiência do usuário. Cada review passa por análise detalhada de múltiplos testadores.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        Vocês recomendam jogos pagos?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Sim! Recomendamos tanto jogos gratuitos quanto pagos. Sempre indicamos quando um jogo vale o investimento e oferecemos alternativas gratuitas quando possível.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        Existe app próprio?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Estamos desenvolvendo nosso aplicativo! Em breve você poderá acessar todo nosso conteúdo diretamente do seu celular com uma experiência otimizada.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                        Com que frequência as listas são atualizadas?
+                                    </button>
+                                </h2>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Nossas listas são atualizadas semanalmente com os lançamentos mais recentes e as tendências do momento. Reviews de jogos populares são atualizados sempre que há mudanças significativas.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                        Como funcionam os planos?
+                                    </button>
+                                </h2>
+                                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Os planos oferecem diferentes níveis de acesso ao nosso conteúdo. Você pode começar com o plano gratuito e upgrade quando quiser. O pagamento é mensal e pode ser cancelado a qualquer momento.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Sobre Page -->
+    <section id="sobre" class="page-content" style="display: none;">
+        <div class="container section-padding">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="section-title fade-in">Sobre a MobileZone</h1>
+                </div>
+            </div>
+            
+            <div class="row mb-5">
+                <div class="col-lg-6 fade-in">
+                    <h2 class="mb-4">Nossa História</h2>
+                    <p class="lead">Somos uma comunidade especialmente criada para amantes de jogos mobile, reunindo os melhores conteúdos, reviews e novidades do mundo gaming em um só lugar.</p>
+                    <p>Nascemos da paixão por jogos e da necessidade de ter um espaço confiável para descobrir novas experiências mobile. Hoje, somos referência no Brasil e contamos com milhares de gamers ativos em nossa comunidade.</p>
+                </div>
+                <div class="col-lg-6 fade-in">
+                    <img src="https://picsum.photos/seed/mobilegaming/500/300" alt="Mobile Gaming" class="img-fluid rounded">
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <h2 class="section-title fade-in">Evolução dos Jogos Mobile</h2>
+                </div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>1997 - Snake</h4>
+                        <p>O início dos jogos em celulares com o icônico Snake da Nokia.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2008 - App Store</h4>
+                        <p>Revolução com o lançamento da App Store e os primeiros jogos touch.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2012 - Era dos Free-to-Play</h4>
+                        <p>Popularização dos jogos gratuitos com micropagamentos.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2016 - Pokémon GO</h4>
+                        <p>Realidade aumentada entra em massa nos jogos mobile.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4>2020 - Cloud Gaming</h4>
+                        <p>Jogos de console e PC agora rodam diretamente no celular.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Missão, Visão e Valores -->
+            <div class="row mt-5">
+                <div class="col-lg-4 fade-in">
+                    <div class="text-center">
+                        <i class="fas fa-bullseye feature-icon"></i>
+                        <h3>Missão</h3>
+                        <p>Descomplicar o mundo dos jogos para todos, oferecendo conteúdo de qualidade que ajude cada gamer a encontrar sua próxima aventura.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 fade-in">
+                    <div class="text-center">
+                        <i class="fas fa-eye feature-icon"></i>
+                        <h3>Visão</h3>
+                        <p>Ser a maior comunidade de jogos mobile da América Latina, conectando gamers e criando experiências incríveis.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 fade-in">
+                    <div class="text-center">
+                        <i class="fas fa-heart feature-icon"></i>
+                        <h3>Valores</h3>
+                        <p>Paixão, inovação, comunidade e qualidade em tudo que fazemos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Page -->
+    <section id="contato" class="page-content" style="display: none;">
+        <div class="container section-padding">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="section-title fade-in">Fale Conosco</h1>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 fade-in">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nome Completo</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Assunto</label>
+                                <select class="form-select" id="subject">
+                                    <option value="">Selecione um assunto</option>
+                                    <option value="duvida">Dúvida</option>
+                                    <option value="sugestao">Sugestão</option>
+                                    <option value="parceria">Parceria</option>
+                                    <option value="suporte">Suporte</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Mensagem</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary-custom w-100">
+                                <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 fade-in">
+                    <div class="contact-info">
+                        <div class="mb-4">
+                            <h4><i class="fas fa-envelope"></i> E-mail</h4>
+                            <p>contato@jogosmobile.com</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4><i class="fas fa-phone"></i> Telefone</h4>
+                            <p>(11) 98765-4321</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4><i class="fas fa-clock"></i> Horário de Atendimento</h4>
+                            <p>Segunda a Sexta: 9h às 18h</p>
+                            <p>Sábado: 9h às 14h</p>
+                        </div>
+                        <div class="mb-4">
+                            <img src="https://picsum.photos/seed/map/350/200" alt="Mapa" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h3 class="mb-3">MobileZone</h3>
+                    <p>Sua referência em jogos mobile</p>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-3">Links Rápidos</h4>
+                    <div class="footer-links">
+                        <a href="#home" onclick="showPage('home')">Home</a><br>
+                        <a href="#sobre" onclick="showPage('sobre')">Sobre</a><br>
+                        <a href="#contato" onclick="showPage('contato')">Contato</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h4 class="mb-3">Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color: var(--azul-neon); margin: 30px 0;">
+            <div class="text-center">
+                <p>&copy; 2024 MobileZone. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Page Navigation
+        function showPage(page) {
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(p => p.style.display = 'none');
+            
+            if (page === 'home') {
+                document.getElementById('home').style.display = 'block';
+            } else if (page === 'sobre') {
+                document.getElementById('sobre').style.display = 'block';
+            } else if (page === 'contato') {
+                document.getElementById('contato').style.display = 'block';
+            }
+            
+            window.scrollTo(0, 0);
+            animateOnScroll();
+        }
+
+        // Smooth Scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Go to Contact with plan selection
+        function goToContact(plan) {
+            showPage('contato');
+            setTimeout(() => {
+                const subject = document.getElementById('subject');
+                subject.value = 'planos';
+                const message = document.getElementById('message');
+                message.value = `Gostaria de mais informações sobre o plano ${plan}.`;
+            }, 100);
+        }
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Show success message
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
+            alertDiv.innerHTML = `
+                <strong>Mensagem enviada com sucesso!</strong> Entraremos em contato em breve.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            this.appendChild(alertDiv);
+            this.reset();
+            
+            // Remove alert after 5 seconds
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate on Scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.style.animationDelay = '0.2s';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Create Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize
+        createParticles();
+        animateOnScroll();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                navbar.style.boxShadow = '0 5px 20px rgba(0, 212, 255, 0.2)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.feature-card, .plan-card, .testimonial-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('featured')) {
+                    this.style.transform = 'translateY(0) scale(1)';
+                } else {
+                    this.style.transform = 'scale(1.05)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
